@@ -1,0 +1,41 @@
+version: "3"
+services: 
+  pgspider-griddb:
+    image: dalongrong/pgspider:griddb-4.2
+    environment: 
+    - "POSTGRES_PASSWORD=dalong"
+    ports: 
+    - "5432:5432"
+    networks:
+     service1_net:
+      ipv4_address: 192.168.1.14
+  griddb-java:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile-java
+    environment: 
+    - "MEMBER_ADDR=griddb-1:10001"
+    networks:
+     service1_net:
+      ipv4_address: 192.168.1.13
+  griddb-1:
+   build: ./
+   networks:
+    service1_net:
+      ipv4_address: 192.168.1.10
+  griddb-2:
+   build: ./
+   networks:
+    service1_net:
+      ipv4_address: 192.168.1.11
+  griddb-3:
+   build: ./
+   networks:
+    service1_net:
+      ipv4_address: 192.168.1.12
+networks:
+  service1_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/16

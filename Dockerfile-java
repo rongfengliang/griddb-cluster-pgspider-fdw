@@ -1,0 +1,5 @@
+FROM openjdk:8u242-jdk-stretch
+WORKDIR /app
+COPY java-app/target/griddb-app.jar /app/griddb-app.jar
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]

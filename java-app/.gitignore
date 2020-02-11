@@ -1,0 +1,7 @@
+.idea
+griddb-app.iml
+target
+.classpath
+.settings
+.project
+dependency-reduced-pom.xml
